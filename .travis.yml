@@ -1,0 +1,25 @@
+language: java
+
+jdk:
+ - oraclejdk8 
+ - oraclejdk7
+ 
+branches:
+  only:
+    - master
+    - desenvolvimento
+    
+addons:
+  sonarqube: true
+env:
+  global:
+    - secure: SONAR_TOKEN=c85312f9026df6e3a31e017fa5c14b0c43258993
+  
+before_script:
+ - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+script:
+  - mvn clean install sonar:sonar -Dsonar.login=c85312f9026df6e3a31e017fa5c14b0c43258993
+  
+notifications:
+  slack: pet-go:d70BfYyKnTaKwLug82wP0fIo
